@@ -1,0 +1,24 @@
+{
+  "name": "weekendchallenge-3",
+  "version": "1.0.0",
+  "description": "[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacksteiner/WeekendChallenge-3.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jacksteiner/WeekendChallenge-3/issues"
+  },
+  "homepage": "https://github.com/jacksteiner/WeekendChallenge-3#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
