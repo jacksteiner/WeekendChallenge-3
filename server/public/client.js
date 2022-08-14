@@ -7,7 +7,7 @@ function onReady () {
 function getTasks () {
     $.ajax({
         type: 'GET',
-        url: 'tasks/'
+        url: '/tasks'
     }).then(function(response){
         console.log(response);
         $('#taskTableBody').empty();
@@ -19,5 +19,8 @@ function getTasks () {
                     <td>
             `)
         }
+    }).catch(function(error){
+        console.log(error)
+        alert('Something went wrong');
     })
 }

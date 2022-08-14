@@ -13,3 +13,18 @@ router.get('/', (req, res) => {
         res.sendStatus(500);
     })
 })
+
+router.post('/', (req, res) => {
+    const tasks = req.body;
+    const queryText = `INSERT INTO "tasks" ("taskname") 
+                        VALUES ($1)`
+    pool.query(queryText, [tasks.taskname])
+        .then((results) => {
+            console.log(results);
+            res.send(results);
+        })
+        .catch((error) => {
+            console.log('ERROR in post /tasks', error);
+            res.sendStatus(500);
+        })
+})
