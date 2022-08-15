@@ -10,3 +10,16 @@ body {
     max-width: 700px;
     margin: 0 auto;
 }
+
+table, th, td {
+    width: 100%;
+    border: 1px solid;
+}
+
+    .default-row {
+        background-color: cadetblue;
+    }
+
+    .complete-row {
+        background-color: darkolivegreen;
+    }

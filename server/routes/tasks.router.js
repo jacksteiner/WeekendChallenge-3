@@ -17,8 +17,8 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     const tasks = req.body;
     const queryText = `INSERT INTO "tasks" ("taskname") 
-                        VALUES ($1)`
-    pool.query(queryText, [tasks.taskname])
+                        VALUES ($1, $2)`
+    pool.query(queryText, [tasks.taskname, tasks.complete])
         .then((results) => {
             console.log(results);
             res.send(results);
@@ -27,4 +27,16 @@ router.post('/', (req, res) => {
             console.log('ERROR in post /tasks', error);
             res.sendStatus(500);
         })
+});
+
+router.delete('/:id', (req, res) => {
+    const taskId = req.params.id;
+    const queryText = 'DELETE FROM "tasks" WHERE "id" = $1;';
+    pool.query(queryText, [taskId])
+        .then((results) => {
+            res.sendStatus(200);
+        }).catch((error) => {
+            res.sendStatus(500);
+        })
 })
+
