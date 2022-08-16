@@ -1,6 +1,7 @@
+const { response } = require('express');
 const express = require('express');
-const router = express.Router();
 const pool = require('../modules/pool.js')
+const router = express.Router();
 
 router.get('/', (req, res) => {
     console.log('in GET tasks')
@@ -16,9 +17,10 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     const tasks = req.body;
+    console.log(req.body);
     const queryText = `INSERT INTO "tasks" ("taskname") 
-                        VALUES ($1, $2)`
-    pool.query(queryText, [tasks.taskname, tasks.complete])
+                        VALUES ($1)`
+    pool.query(queryText, [tasks.task])
         .then((results) => {
             console.log(results);
             res.send(results);
@@ -40,3 +42,4 @@ router.delete('/:id', (req, res) => {
         })
 })
 
+module.exports = router;

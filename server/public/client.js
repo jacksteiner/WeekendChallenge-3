@@ -2,6 +2,7 @@ $(document).ready(onReady);
 
 function onReady () {
     $('#task-submit').on('click', sendTasksToServer);
+    $('body').on('click', 'task-delete', deleteTask);
     getTasks();
 }
 
@@ -18,21 +19,23 @@ function getTasks () {
             if (tasks.complete === true ){
                 rowChange = "complete-row";
             }
-            // APPEND TASK, MAKE TASK.ROUTER FIRST
             $('#taskTableBody').append(`
-                <tr>
+                <tr class="${rowChange}">
                     <td>${tasks.taskname}<td>
                     <td>${tasks.complete}<td>
                     <td>
-                    <button class ="task-delete" data-id="${tasks.id}"Delete</button>
+                    <button class ="task-delete" data-id="${tasks.id}">Delete</button>
                     </td>
-                    <button class ="task-complete"Complete</button>
+                    <td>
+                    <button class ="task-complete">Complete</button>
+                    </td>
+                </tr>
 
             `);
         }
     }).catch(function(error){
         console.log(error)
-        alert('Something went wrong');
+        alert('Something went wrong in get tasks');
     })
 }
 
@@ -41,7 +44,7 @@ function sendTasksToServer() {
         type: 'POST',
         url: '/tasks',
         data: {
-            tasks: $('#task-input').val(),
+            task: $('#task-input').val(),
         }
     }).then(function (response) {
         getTasks();
@@ -57,6 +60,6 @@ function deleteTask() {
         getTasks();
     }).catch(function(error){
         console.log(error);
-        alert('Something went wrong')
+        alert('Something went wrong in delete task')
     })
 }
