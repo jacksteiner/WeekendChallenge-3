@@ -33,6 +33,7 @@ router.post('/', (req, res) => {
 
 router.delete('/:id', (req, res) => {
     const taskId = req.params.id;
+    console.log('req.params.id', req.params.id);
     const queryText = 'DELETE FROM "tasks" WHERE "id" = $1;';
     pool.query(queryText, [taskId])
         .then((results) => {
@@ -41,5 +42,18 @@ router.delete('/:id', (req, res) => {
             res.sendStatus(500);
         })
 })
+
+router.put('/:id', (req, res) => {
+    const taskId = req.params.id;
+    const queryText = `UPDATE "tasks"
+                       SET "complete" = true
+                       WHERE "id" = $1;`;
+    pool.query(queryText, [taskId])
+        .then((results) => {
+            res.sendStatus(200);
+        }).catch((error) => {
+            res.sendStatus(500);
+        })
+});
 
 module.exports = router;

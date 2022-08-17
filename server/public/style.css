@@ -1,8 +1,12 @@
 html,
 body {
-    background-color: antiquewhite;
-    margin: 0;
+    background-color: #faebd7;
+    margin: 200;
     font-family: Arial, Helvetica, sans-serif;
+    border-radius: 50px;
+    background: linear-gradient(225deg, #f2c892, #cba87a);
+    box-shadow:  -41px 41px 82px #c09f74,
+                  41px -41px 82px #ffd79c;
 }
 
 #content {
@@ -12,7 +16,7 @@ body {
 }
 
 table, th, td {
-    width: 100%;
+    width: 75%;
     border: 1px solid;
 }
 
